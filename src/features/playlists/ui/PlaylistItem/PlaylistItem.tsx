@@ -1,0 +1,26 @@
+import {useDeletePlaylistMutation} from "@/features/playlists/api/playlistsApi";
+import type {PlaylistData} from "@/features/playlists/api/playlistsApi.types";
+
+type Props = {
+    playlist: PlaylistData,
+    editPlaylist: (playlist: PlaylistData| null) => void,
+}
+
+export const PlaylistItem = ({playlist, editPlaylist}: Props) => {
+    const [deletePlaylist] = useDeletePlaylistMutation()
+
+    const deletePlaylistHandler = (playlistId: string) => {
+        deletePlaylist(playlistId)
+    }
+
+    return (
+        <div>
+            <div>title: {playlist.attributes.title}</div>
+            <div>description: {playlist.attributes.description}</div>
+            <div>userName: {playlist.attributes.user.name}</div>
+            <button onClick={() => deletePlaylistHandler(playlist.id)}>delete</button>
+            <button onClick={() => editPlaylist(playlist)}>update</button>
+        </div>
+    );
+};
+
