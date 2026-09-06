@@ -13,6 +13,7 @@ export const CreatePlaylistForm = () => {
                 attributes: {
                     title: formData.title,
                     description: formData.description,
+                    tagIds: []
                 }
             }
         };
