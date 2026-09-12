@@ -15,6 +15,7 @@ export const useInfiniteScroll = ({
                                       rootMargin = '100px',
                                       threshold = 0.1,
                                   }: Props) => {
+
     const observerRef = useRef<HTMLDivElement>(null)
 
     const loadMoreHandler = useCallback(() => {

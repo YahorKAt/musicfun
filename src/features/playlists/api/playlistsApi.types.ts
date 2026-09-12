@@ -53,16 +53,6 @@ export type CreatePlaylistArgs = {
     description: string,
 }
 
-export type UpdatePlaylistArgs = {
-    data: {
-        type: string,
-        attributes: {
-            title: string,
-            description: string,
-            tagIds: string[]
-        }
-    }
-}
 
 export type PlaylistFormValues = {
     title: string;

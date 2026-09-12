@@ -1,61 +1,51 @@
+import {Pagination} from "@/common/components";
+import {useDebounceValue} from "@/common/hooks";
 import {
     useFetchPlaylistsQuery,
 } from "@/features/playlists/api/playlistsApi";
-import type {
-    PlaylistData,
-    PlaylistFormValues,
-} from "@/features/playlists/api/playlistsApi.types";
-import {CreatePlaylistForm} from "@/features/playlists/ui/CreatePlaylistForm/CreatePlaylistForm";
-import {EditPlaylistForm} from "@/features/playlists/ui/EditPlaylistForm/EditPlaylistForm";
-import {PlaylistItem} from "@/features/playlists/ui/PlaylistItem/PlaylistItem";
-import {useState} from "react";
-import {useForm} from "react-hook-form";
+import {CreatePlaylistForm} from "@/features/playlists/ui/CreatePlaylistForm";
+import {PlaylistList} from "@/features/playlists/ui/PlaylistList/PlaylistList";
+import {type ChangeEvent, useState} from "react";
 import s from './PlaylistsPage.module.css'
 
 export const PlaylistsPage = () => {
-    const {data} = useFetchPlaylistsQuery()
+    const [search, setSearch] = useState('')
+    const [currentPage, setCurrentPage] = useState<number>(1)
+    const [pageSize, setPageSize] = useState<number>(8)
+    const debounceSearch = useDebounceValue(search)
 
-    const [playlistId, setPlaylistId] = useState<string | null>(null)
-    const {register, handleSubmit, reset} = useForm<PlaylistFormValues>()
+    const {data, isLoading} = useFetchPlaylistsQuery({
+        search: debounceSearch,
+        pageSize,
+        pageNumber: currentPage
+    })
 
-    const editPlaylistHandler = (playlist: PlaylistData | null) => {
-        if (playlist) {
-            setPlaylistId(playlist.id)
-            reset({
-                title: playlist.attributes.title,
-                description: playlist.attributes.description,
-                tagIds: playlist.attributes.tags.map(tag => tag.id),
-            })
-        } else {
-            setPlaylistId(null)
-        }
+    const searchPlaylistHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        setSearch(e.currentTarget.value)
+        setCurrentPage(1)
+    }
+
+    const changePageSizeHandler = (size: number) => {
+        setCurrentPage(1)
+        setPageSize(size)
+    }
+
+    if (isLoading) {
+        return <h1>Skeleton loader...</h1>;
     }
 
     return (
         <div className={s.container}>
             <h1>Playlists page</h1>
-            <CreatePlaylistForm/>
-            <div className={s.items}>
-                {data?.data.map(playlist => {
-                    const isEditing = playlistId === playlist.id
-                    return (
-                        <div className={s.item} key={playlist.id}>
-                            {
-                                isEditing
-                                    ? <EditPlaylistForm playlistId={playlistId}
-                                                        setPlaylistId={setPlaylistId}
-                                                        editPlaylist={editPlaylistHandler}
-                                                        register={register}
-                                                        handleSubmit={handleSubmit}
-                                    />
-                                    : <PlaylistItem playlist={playlist}
-                                                    editPlaylist={editPlaylistHandler}
-                                    />
-                            }
-                        </div>
-                    )
-                })}
-            </div>
+            <CreatePlaylistForm setCurrentPage={setCurrentPage}/>
+            <input type='search' placeholder='Search playlist by title' onChange={e => searchPlaylistHandler(e)}/>
+            <PlaylistList playlists={data?.data || []} isPlaylistLoading={isLoading}/>
+            <Pagination pagesCount={data?.meta.pagesCount || 1}
+                        currentPage={currentPage}
+                        setCurrentPage={setCurrentPage}
+                        pageSize={pageSize}
+                        changePageSize={changePageSizeHandler}
+            />
         </div>
     )
 }

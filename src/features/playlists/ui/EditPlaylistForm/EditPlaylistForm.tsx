@@ -29,11 +29,11 @@ export const EditPlaylistForm = ({playlistId, setPlaylistId, editPlaylist, regis
             }
         }
 
-        updatePlaylist(apiPayload).then(() => {
-            setPlaylistId(null)
-        })
+        updatePlaylist(apiPayload)
+        setPlaylistId(null)
+
     }
-    
+
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <h2>Edit playlist</h2>
