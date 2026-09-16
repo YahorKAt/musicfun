@@ -1,5 +1,7 @@
 import {baseApi} from "@/app/api/baseApi";
+import {withZodCatch} from "@/common/utils";
 import type {FetchTracksResponse} from "@/features/tacks/api/tracksApi.types";
+import {fetchTracksResponseSchema} from "@/features/tacks/model";
 
 export const tracksApi = baseApi.injectEndpoints({
     endpoints: build => ({
@@ -10,10 +12,11 @@ export const tracksApi = baseApi.injectEndpoints({
             },
             query: ({pageParam}) => {
                 return {
-                    url: 'playlists/tracks',
+                    url: '/playlists/tracks',
                     params: {cursor: pageParam, pageSize: 5, paginationType: 'cursor'},
                 }
             },
+            ...withZodCatch(fetchTracksResponseSchema)
         }),
     }),
 })

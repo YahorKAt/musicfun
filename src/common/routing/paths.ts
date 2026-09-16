@@ -4,4 +4,5 @@ export const Path = {
     Tracks: '/tracks',
     Profile: '/profile',
     NotFound: '*',
+    OAuthRedirect: '/oauth2/callback',
 } as const
