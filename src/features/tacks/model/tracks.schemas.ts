@@ -1,6 +1,7 @@
+import {currentUserReactionSchema} from "@/common/enums";
 import * as z from 'zod'
 
-import {currentUserReactionSchema, imagesSchema, userSchema} from '@/common/schemas'
+import { imagesSchema, userSchema} from '@/common/schemas'
 
 export const trackAttachmentSchema = z.object({
     id: z.string(),
@@ -60,7 +61,7 @@ export const trackDataSchema = z.object({
 
 export const fetchTracksResponseSchema = z.object({
     data: z.array(trackDataSchema),
-    included: z.array(tracksIncludedSchema),
     meta: tracksMetaSchema,
+    included: z.array(tracksIncludedSchema),
 })
 

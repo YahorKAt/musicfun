@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.searchSortContainer{
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    justify-content: space-between;
+}
+
+.title {
+    font-family: "Lato", sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    color: var(--color-text-primary);
+    margin: 0;
+}
+
+.group{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.tagsContainer{
+    display: flex;
+    gap: 24px;
+}

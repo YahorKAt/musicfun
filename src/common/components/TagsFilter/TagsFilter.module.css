@@ -1,0 +1,190 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.label {
+    display: block;
+    font-family: "Lato", sans-serif;
+    margin-bottom: 4px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.71429;
+    color: #fff;
+}
+
+.tagsWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: #2a2a2a;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    padding: 8px 12px;
+    transition: border-color 0.2s;
+}
+
+.tagsWrapper:focus-within {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.tagsList {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    min-width: 0;
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    background-color: #3a3a3a;
+    border-radius: 12px;
+    flex-shrink: 0;
+    white-space: nowrap;
+
+    font-family: "Lato", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.71429;
+    color: #fff;
+}
+
+.tagRemove {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s;
+}
+
+.tagRemove:hover {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.tagInput {
+    flex: 1;
+    min-width: 60px;
+    background: none;
+    border: none;
+    outline: none;
+    padding: 4px 0;
+    font-family: "Lato", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.71429;
+    color: #fff;
+}
+
+.tagInput::placeholder {
+    font-family: "Lato", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.71429;
+    color: #fff;
+}
+
+.dropdownToggle {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.dropdownToggle:hover {
+    color: #fff;
+}
+
+/* Dropdown */
+.dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    max-height: 240px;
+    overflow-y: auto;
+    background-color: #2a2a2a;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0 0 4px 4px;
+    padding: 8px 0;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    animation: dropdownFade 0.2s ease;
+}
+
+@keyframes dropdownFade {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dropdownItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.dropdownItem:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.checkbox {
+    width: 16px;
+    height: 16px;
+    accent-color: #ff38b6;
+    cursor: pointer;
+}
+
+.dropdownItemLabel {
+    color: #fff;
+    font-size: 14px;
+}
+
+/* Скроллбар dropdown */
+.dropdown::-webkit-scrollbar {
+    width: 6px;
+}
+
+.dropdown::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.dropdown::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+.moreText{
+    color: var(--color-text-primary);
+    font-family: "Lato", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.71429;
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding: 4px 8px;
+}

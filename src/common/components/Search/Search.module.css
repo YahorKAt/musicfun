@@ -1,0 +1,44 @@
+/* Поиск */
+.searchWrapper {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 16px;
+    color: var(--color-text-primary);
+    pointer-events: none;
+
+}
+
+.searchInput {
+    width: 100%;
+    padding: 16px 8px 16px 48px;
+    background-color: #2a2a2a;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: var(--color-text-primary);
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+
+    font-family: "Lato", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.searchInput:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.searchInput::placeholder {
+    font-family: "Lato", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--color-text-primary);
+}

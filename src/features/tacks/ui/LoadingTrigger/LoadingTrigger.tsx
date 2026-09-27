@@ -1,3 +1,4 @@
+import {Loader} from "@/common/components/Loader/Loader";
 import type {RefObject} from "react";
 
 type Props ={
@@ -9,7 +10,7 @@ export const LoadingTrigger = ({observerRef, isFetchingNextPage}:Props) => {
 
     return (
         <div ref={observerRef}>
-            {isFetchingNextPage ? <div>Loading more tracks...</div> : <div style={{height: '20px'}}/>}
+            {isFetchingNextPage ? <Loader/> : <div style={{height: '20px'}}/>}
         </div>
     );
 };

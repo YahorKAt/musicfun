@@ -1,0 +1,41 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 4px 0;
+    font-family: "Lato", sans-serif;
+    color: var(--color-text-primary);
+    width: 100%;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.71429;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0;
+}
+
+.author {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    margin: 0;
+
+}
+
+.author span {
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    color: var(--color-text-primary);
+}
+
+
+.meta {
+    font-weight: 500;
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    margin: 0;
+}

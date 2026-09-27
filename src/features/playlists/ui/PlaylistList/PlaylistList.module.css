@@ -1,13 +1,26 @@
-.items {
+.listItems {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 264px); /* Фиксированная ширина */
+    gap: 12px;
+    justify-content: center; /* Центрирует сетку */
+    min-height: 200px;
+}
+
+.notFoundWrapper {
+    grid-column: 1 / -1; /* Растянуть на все колонки */
     display: flex;
-    gap: 30px;
-    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 64px 0;
 }
 
-.item {
-    width: 240px;
-    padding: 16px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+.notFoundTitle {
+    color: var(--color-text-primary);
+    font-family: "Lato", sans-serif;
+    font-weight: 800;
+    font-size: 30px;
+    line-height: 1.33333;
+    text-align: center;
+    margin: 0;
 }
-

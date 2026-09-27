@@ -1,0 +1,12 @@
+.reactions {
+    display: flex;
+    gap: 4px; /* Отступ между контейнерами как в макете */
+}
+
+.reaction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+

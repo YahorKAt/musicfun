@@ -1,4 +1,5 @@
-import {currentUserReactionSchema, imagesSchema, tagSchema, userSchema} from "@/common/schemas";
+import {currentUserReactionSchema} from "@/common/enums";
+import {imagesSchema, tagSchema, userSchema} from "@/common/schemas";
 import * as z from "zod";
 
 

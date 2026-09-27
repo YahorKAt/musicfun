@@ -1,5 +1,22 @@
 :root {
-    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-    line-height: 1.5;
-    font-weight: 400;
+    --header-height: 80px;
+    --player-height: 100px;
+    --sidebar-width: 300px;
+    --sidebar-collapsed-width: 60px;
+
+    /* Цвета */
+    --color-bg-primary: rgb(13 13 26 / 0.38);
+    --color-bg-secondary: #1e1e4e;
+    --color-bg-dark: #000;
+    --color-bg-player: #181818;
+    --color-bg-body: #121212;
+    --color-text-primary: #fff;
+    --color-text-secondary: #b3b3b3;
+    --color-border: #282828;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }

@@ -2,7 +2,7 @@ import {baseApi} from "@/app/api/baseApi";
 import {SOCKET_EVENTS} from "@/common/constants";
 import {imagesSchema} from "@/common/schemas";
 import {subscribeToEvent} from "@/common/socket";
-import type {Images} from "@/common/types";
+import type {Images, ReactionOutput} from "@/common/types";
 import {withZodCatch} from "@/common/utils";
 import type {
     CreatePlaylistRequest, FetchPlaylistsArgs, PlaylistCreatedEvent,
@@ -15,8 +15,6 @@ export const playlistsApi = baseApi.injectEndpoints({
     endpoints: (build) => ({
         fetchPlaylists: build.query<PlaylistsResponse, FetchPlaylistsArgs>({
             query: (params) => ({url: '/playlists', params}),
-            ...withZodCatch(playlistsResponseSchema),
-            keepUnusedDataFor: 0,
             onCacheEntryAdded: async (_arg, {cacheDataLoaded, updateCachedData, cacheEntryRemoved}) => {
                 await cacheDataLoaded
 
@@ -24,10 +22,14 @@ export const playlistsApi = baseApi.injectEndpoints({
                     subscribeToEvent<PlaylistCreatedEvent>(SOCKET_EVENTS.PLAYLIST_CREATED, (msg) => {
                         const newPlaylist = msg.payload.data
                         updateCachedData((state) => {
-                            state.data.pop()
-                            state.data.unshift(newPlaylist)
                             state.meta.totalCount = state.meta.totalCount + 1
                             state.meta.pagesCount = Math.ceil(state.meta.totalCount / state.meta.pageSize)
+                            if (state.meta.page === 1) {
+                                state.data.unshift(newPlaylist)
+                                if (state.data.length > state.meta.pageSize) {
+                                    state.data.pop()
+                                }
+                            }
                         })
                     }),
                     subscribeToEvent<PlaylistUpdatedEvent>(SOCKET_EVENTS.PLAYLIST_UPDATED, (msg) => {
@@ -45,14 +47,15 @@ export const playlistsApi = baseApi.injectEndpoints({
                 unsubscribes.forEach(unsubscribe => unsubscribe())
 
             },
+            ...withZodCatch(playlistsResponseSchema),
             providesTags: ['PlayList'],
         }),
         createPlaylist: build.mutation<{ data: PlaylistData }, CreatePlaylistRequest>({
             query: (body) => ({url: '/playlists', method: 'POST', body}),
             ...withZodCatch(playlistCreateResponseSchema),
             invalidatesTags: ['PlayList'],
-
         }),
+
         deletePlaylist: build.mutation<void, string>({
             query: (playlistId) => ({url: `/playlists/${playlistId}`, method: 'DELETE'}),
             invalidatesTags: ['PlayList'],
@@ -83,6 +86,7 @@ export const playlistsApi = baseApi.injectEndpoints({
             },
             invalidatesTags: ['PlayList'],
         }),
+
         uploadPlaylistCover: build.mutation<Images, { playlistId: string, file: File }>({
             query: ({playlistId, file}) => {
                 const formData = new FormData()
@@ -92,9 +96,22 @@ export const playlistsApi = baseApi.injectEndpoints({
             ...withZodCatch(imagesSchema),
             invalidatesTags: ['PlayList'],
         }),
+
         deletePlaylistCover: build.mutation<void, { playlistId: string }>({
             query: ({playlistId}) => ({url: `/playlists/${playlistId}/images/main`, method: 'DELETE'}),
             invalidatesTags: ['PlayList'],
+        }),
+        likePlaylist: build.mutation<ReactionOutput, { playlistId: string }>({
+            query: ({playlistId}) => ({url: `/playlists/${playlistId}/likes`, method: 'POST'}),
+            invalidatesTags: ['PlayList']
+        }),
+        dislikePlaylist: build.mutation<ReactionOutput, { playlistId: string }>({
+            query: ({playlistId}) => ({url: `/playlists/${playlistId}/dislikes`, method: 'POST'}),
+            invalidatesTags: ['PlayList']
+        }),
+        removeReactionPlaylist: build.mutation<ReactionOutput, { playlistId: string }>({
+            query: ({playlistId}) => ({url: `/playlists/${playlistId}/reactions`, method: 'DELETE'}),
+            invalidatesTags: ['PlayList']
         }),
     })
 })
@@ -105,5 +122,8 @@ export const {
     useDeletePlaylistMutation,
     useUpdatePlaylistMutation,
     useUploadPlaylistCoverMutation,
-    useDeletePlaylistCoverMutation
+    useDeletePlaylistCoverMutation,
+    useLikePlaylistMutation,
+    useDislikePlaylistMutation,
+    useRemoveReactionPlaylistMutation,
 } = playlistsApi

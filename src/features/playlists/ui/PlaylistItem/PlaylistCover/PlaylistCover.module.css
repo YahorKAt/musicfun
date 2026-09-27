@@ -1,5 +1,12 @@
-.cover{
-    width: 240px;
-    height: 240px;
+.coverWrapper {
+    width: 100%;
+    aspect-ratio: 246 / 153;
+    overflow: hidden;
+}
+
+.cover {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    display: block;
 }

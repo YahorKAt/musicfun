@@ -1,7 +1,8 @@
 export const Path = {
-    Main: '/',
-    Playlists: '/playlists',
+    Home: '/',
+    Library: '/library',
     Tracks: '/tracks',
+    Playlists: '/playlists',
     Profile: '/profile',
     NotFound: '*',
     OAuthRedirect: '/oauth2/callback',

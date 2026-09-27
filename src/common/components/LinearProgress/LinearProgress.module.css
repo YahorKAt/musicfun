@@ -1,14 +1,18 @@
 .root {
-    background: #23272f;
+    background: transparent;
     border-radius: 8px;
     overflow: hidden;
-    position: relative;
     width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
 }
 
 .bar {
     height: 100%;
-    background: #ddd;
+    background: var(--color-text-secondary);
     position: absolute;
 }
 

@@ -1,4 +1,4 @@
-import {CurrentUserReaction} from "@/common/enums";
+import {currentUserReactionSchema} from "@/common/enums";
 import * as z from "zod";
 
 export const tagSchema = z.object({
@@ -23,4 +23,10 @@ export const imagesSchema = z.object({
     main: z.array(coverSchema)
 })
 
-export const currentUserReactionSchema = z.enum(CurrentUserReaction)
+export const reactionOutputSchema = z.object({
+    objectId: z.string(),
+    value: currentUserReactionSchema,
+    likes: z.number().int().min(0),
+    dislikes: z.number().int().min(0),
+})
+

@@ -1,4 +1,51 @@
+/* Основной контейнер */
 .layout {
-    max-width: 1186px;
-    margin: 0 auto 200px;
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    background-color: var(--color-bg-dark);
 }
+
+/* Основная область (справа от сайдбара) */
+.mainArea {
+    display: flex;
+    margin-left: var(--sidebar-width);
+    padding-bottom: var(--player-height);
+    flex-direction: column;
+    min-width: 0; /* Важно для flex */
+    position: relative;
+
+    height: 100vh; /* ← Полная высота экрана */
+}
+
+/* Контент - скроллится */
+.content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 32px;
+    flex: 1; /* Занимает всё оставшееся место */
+    overflow-y: auto; /* Скролл появляется здесь */
+    background: linear-gradient(180deg, #3333A3 0%, #121212 50%);
+
+    padding-bottom: calc(32px + var(--player-height)); /* ← Отступ под плеер */
+}
+
+/* Кастомный скроллбар */
+.content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.content::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 4px;
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+    background: #888;
+}
+

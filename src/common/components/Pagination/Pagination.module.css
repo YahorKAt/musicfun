@@ -1,33 +1,119 @@
+.container {
+    font-family: "Lato", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 50px;
+}
+
 .pagination {
     display: flex;
-    gap: 8px;
-    justify-content: center;
+    align-items: center;
+    gap: 6px;
 }
 
 .pageButton {
-    padding: 4px 10px;
-    background: white;
-    border: 1px solid #aaa;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2a2a2a;
+    border: none;
     border-radius: 4px;
     cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: center;
+    color: #fff;
+}
+
+.pageButton:hover:not(:disabled) {
+    background-color: #3a3a3a;
 }
 
 .pageButtonActive {
-    background: #ececec;
+    background-color: #ff38b6;
+    color: #fff;
+}
+
+.pageButtonActive:hover {
+    background-color: #ff5cc7;
+}
+
+.pageButton:disabled {
     cursor: default;
+    opacity: 1; /* Убираем стандартное затемнение */
 }
 
 .ellipsis {
-    padding: 4px 10px;
-    color: #888;
-    user-select: none;
-}
-
-.container {
+    width: 40px;
+    height: 40px;
     display: flex;
-    align-content: center;
     align-items: center;
-    margin: 0 auto;
-    gap: 40px;
+    justify-content: center;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
 }
 
+/* Кнопки навигации < и > */
+.navButton {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2a2a2a;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.navButton:hover:not(:disabled) {
+    background-color: #3a3a3a;
+}
+
+.navButton:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* Селект размера страницы */
+.pageSizeLabel {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 16px;
+}
+
+.pageSizeSelect {
+    padding: 6px 12px;
+    background-color: #2a2a2a;
+    border: none;
+    border-radius: 4px;
+    height: 40px;
+    cursor: pointer;
+    outline: none;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: center;
+    color: #fff;
+}
+
+.pageSizeSelect:focus {
+    outline: 1px solid #ff38b6;
+}
+
+.pageSizeSelect option {
+    background-color: #1a1a1a;
+    color: #fff;
+}

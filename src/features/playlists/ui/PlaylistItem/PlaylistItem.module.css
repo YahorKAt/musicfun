@@ -1,0 +1,38 @@
+.item {
+    width: 246px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-bg-primary);
+    padding: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    /* Убираем фиксированную ширину — пусть grid управляет */
+}
+
+.item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    transform: translateY(-4px);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .items {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 8px;
+        padding: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .items {
+        grid-template-columns: 1fr; /* Одна колонка на мобильных */
+    }
+}
+
+.duration{
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: 10px;
+    margin-top: 4px;
+    color: var(--color-text-secondary);
+}

@@ -1,0 +1,245 @@
+.player {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    padding: 0 32px;
+    height: var(--player-height);
+    background-color: #181818;
+    border-top: 1px solid #282828;
+    gap: 16px;
+    z-index: 100;
+}
+
+/* Левая часть - информация о треке */
+.trackInfo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.cover {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.cover::before {
+    content: "№";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.coverNumber {
+    font-size: 32px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.trackDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.trackName {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.artistName {
+    color: #b3b3b3;
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Центральная часть - контролы */
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.controlButtons {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.controlBtn {
+    background: none;
+    border: none;
+    color: #b3b3b3;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.controlBtn:hover {
+    color: #fff;
+}
+
+.playBtn {
+    width: 32px;
+    height: 32px;
+    background-color: #fff;
+    border: none;
+    border-radius: 50%;
+    color: #000;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.playBtn:hover {
+    transform: scale(1.1);
+}
+
+/* Прогресс-бар */
+.progressBar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.time {
+    color: #b3b3b3;
+    font-size: 11px;
+    min-width: 40px;
+    text-align: center;
+}
+
+.progressTrack {
+    flex: 1;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    cursor: pointer;
+    position: relative;
+}
+
+.progressFill {
+    height: 100%;
+    background-color: #1db954;
+    border-radius: 2px;
+    transition: width 0.1s;
+}
+
+.progressTrack:hover .progressFill {
+    background-color: #1db954;
+}
+
+/* Правая часть - громкость */
+.volume {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.volumeSlider {
+    width: 100px;
+    height: 4px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+}
+
+.volumeSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background: #1db954;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.volumeSlider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background: #1db954;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .player {
+        grid-template-columns: 1fr 1fr;
+        height: 70px;
+        padding: 0 8px;
+    }
+
+    .volume {
+        display: none;
+    }
+
+    .cover {
+        width: 40px;
+        height: 40px;
+    }
+
+    .coverNumber {
+        font-size: 24px;
+    }
+}
+
+.volumeSlider {
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    cursor: pointer;
+    position: relative;
+    transition: height 0.1s;
+}
+
+.volumeSlider:hover {
+    height: 6px;
+}
+
+.volumeSliderFill {
+    height: 100%;
+    background-color: #1db954;
+    border-radius: 2px;
+    transition: width 0.1s;
+}
+
+.volumeSlider:hover .volumeSliderFill {
+    background-color: #1db954; /* Зелёный при наведении */
+}

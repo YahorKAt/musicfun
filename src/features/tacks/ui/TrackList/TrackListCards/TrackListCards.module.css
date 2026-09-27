@@ -1,0 +1,31 @@
+.tracklist {
+    display: flex;
+    flex-wrap: nowrap; /* Запрещаем перенос на новую строку */
+    gap: 8px;
+    width: 100%;
+    overflow-x: auto; /* Горизонтальный скролл */
+    scroll-behavior: smooth; /* Плавная прокрутка */
+    padding: 8px;
+    /* Скрываем стандартный скроллбар (опционально) */
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+/* Кастомный скроллбар для Webkit */
+.tracklist::-webkit-scrollbar {
+    height: 4px;
+}
+
+.tracklist::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.tracklist::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+.tracklist::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}

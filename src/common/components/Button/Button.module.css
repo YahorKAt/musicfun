@@ -1,0 +1,62 @@
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10px;
+    padding: 16px 40px;
+
+    border-radius: 45px;
+    border: none;
+    font-family: "Lato", sans-serif;;
+    font-weight: 800;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+/* Primary — розовая как в макете */
+.primary {
+    background: #ff38b6;
+    color: var(--color-text-primary);
+}
+
+.primary:hover {
+    background: #ff5cc7;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 56, 182, 0.4);
+}
+
+.primary:active {
+    transform: translateY(0);
+}
+
+.primary:disabled {
+    background: rgba(255, 56, 182, 0.5);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Secondary — обводка */
+.secondary {
+    background: #555555;
+    color: var(--color-text-primary);
+}
+
+.secondary:hover {
+    background: #2c2d30;
+    transform: translateY(-2px);
+}
+
+/* Ghost — без фона */
+.ghost {
+    background: transparent;
+    color: var(--color-text-primary);
+}
+
+.ghost:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+

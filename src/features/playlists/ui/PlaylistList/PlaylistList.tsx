@@ -4,7 +4,7 @@ import type {
 } from "@/features/playlists/api/playlistsApi.types";
 import {EditPlaylistForm} from "@/features/playlists/ui/EditPlaylistForm/EditPlaylistForm";
 import {PlaylistItem} from "@/features/playlists/ui/PlaylistItem/PlaylistItem";
-import {useState} from "react";
+import {Fragment, useState} from "react";
 import {useForm} from "react-hook-form";
 import s from './PlaylistList.module.css'
 
@@ -31,12 +31,16 @@ export const PlaylistList = ({playlists, isPlaylistLoading}: Props) => {
     }
 
     return (
-        <div className={s.items}>
-            {!playlists?.length && !isPlaylistLoading && <h2>Playlists not found</h2>}
+        <div className={s.listItems}>
+            {!playlists?.length && !isPlaylistLoading &&  (
+                <div className={s.notFoundWrapper}>
+                    <h2 className={s.notFoundTitle}>Playlists not found</h2>
+                </div>
+            )}
             {playlists?.map(playlist => {
                 const isEditing = playlistId === playlist.id
                 return (
-                    <div className={s.item} key={playlist.id}>
+                    <Fragment key={playlist.id}>
                         {isEditing
                             ? <EditPlaylistForm playlistId={playlistId}
                                                 setPlaylistId={setPlaylistId}
@@ -44,9 +48,10 @@ export const PlaylistList = ({playlists, isPlaylistLoading}: Props) => {
                                                 register={register}
                                                 handleSubmit={handleSubmit}
                             />
-                            : <PlaylistItem playlist={playlist} editPlaylist={editPlaylistHandler}/>
+                            :
+                            <PlaylistItem playlist={playlist} editPlaylist={editPlaylistHandler}/>
                         }
-                    </div>
+                    </Fragment>
                 )
             })}
         </div>

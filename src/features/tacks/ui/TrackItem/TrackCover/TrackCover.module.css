@@ -1,0 +1,29 @@
+.coverWrapper {
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+/* Размеры для разных вариантов использования */
+.sizeSmall {
+    width: 52px;
+    height: 52px;
+}
+
+.sizeMedium {
+    width: 112px;
+    height: 103px;
+    /* Или aspect-ratio: 112 / 103; */
+}
+
+.sizeLarge {
+    width: 200px;
+    height: 200px;
+    aspect-ratio: 1 / 1;
+}
+
+.cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}

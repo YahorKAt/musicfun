@@ -1,3 +1,4 @@
+import {Button} from "@/common/components/Button/Button";
 import {Path} from "@/common/routing";
 import {useLoginMutation} from "@/features/auth/api/authApi";
 
@@ -14,19 +15,16 @@ export const Login = () => {
 
             if (event.origin !== import.meta.env.VITE_DOMAIN_ADDRESS) return
 
-            const { code } = event.data
+            const {code} = event.data
             if (!code) return
 
             // Отписываемся от события, чтобы избежать обработки дублирующихся сообщений
             window.removeEventListener('message', receiveMessage)
 
-            login({ code, redirectUri, rememberMe: false })
+            login({code, redirectUri, rememberMe: false})
         }
 
         window.addEventListener('message', receiveMessage)
     }
-
-    return (
-        <button type='button' onClick={loginHandler}>Login </button>
-    );
+    return <Button onClick={loginHandler}>Sign up with APIHUB</Button>
 };

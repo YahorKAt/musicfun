@@ -1,48 +1,19 @@
-import {Path} from "@/common/routing/paths";
-import {useGetMeQuery, useLogoutMutation} from "@/features/auth/api/authApi";
+import {UserMenu} from "@/common/components/UserMenu";
+import {useGetMeQuery} from "@/features/auth/api/authApi";
 import {Login} from "@/features/auth/ui/Login/Login";
-import {Link, NavLink} from 'react-router'
 import s from './Header.module.css'
-
-const navItems = [
-    {to: Path.Main, label: 'Main'},
-    {to: Path.Playlists, label: 'Playlists'},
-    {to: Path.Tracks, label: 'Tracks'},
-    // {to: Path.Profile, label: 'Profile'},
-]
+import avatar from "@/assets/icons/avatar.png"
 
 export const Header = () => {
     const {data} = useGetMeQuery()
-    const [logout] = useLogoutMutation()
-
-
-    const logoutHandler = () => {
-        logout()
-    }
 
     return (
-        <header className={s.container}>
-            <nav>
-                <ul className={s.list}>
-                    {navItems.map(item => (
-                        <li key={item.to}>
-                            <NavLink
-                                to={item.to}
-                                className={({isActive}) => `link ${isActive ? s.activeLink : ''}`}
-                            >
-                                {item.label}
-                            </NavLink>
-                        </li>
-                    ))}
-                </ul>
-            </nav>
+        <header className={s.header}>
             {data && (
-                <div className={s.loginContainer}>
-                    <Link to={Path.Profile}>{data.login}</Link>
-                    <button onClick={logoutHandler}>logout</button>
+                <div className={s.userSection}>
+                    <UserMenu userName={data.login} userAvatar={avatar}/>
                 </div>
             )}
-
             {!data && <Login/>}
         </header>
     )

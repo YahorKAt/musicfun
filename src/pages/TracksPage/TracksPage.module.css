@@ -1,0 +1,34 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.title {
+    font-family: "Lato", sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    color: var(--color-text-primary);
+    margin: 0;
+}
+
+.searchContainer{
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    justify-content: space-between;
+}
+
+.tagsContainer{
+    display: flex;
+    gap: 24px;
+}
+
+.notification{
+    font-family: "Lato", sans-serif;
+    color: var(--color-text-primary);
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+
+}

@@ -4,7 +4,7 @@ type Props = {
     height?: number
 }
 
-export const LinearProgress = ({ height = 4 }: Props) => {
+export const LinearProgress = ({ height = 2 }: Props) => {
     return (
         <div className={s.root} style={{ height }}>
             <div className={`${s.bar} ${s.indeterminate1}`} />

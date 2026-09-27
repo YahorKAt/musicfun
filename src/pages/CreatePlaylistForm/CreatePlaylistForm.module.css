@@ -1,0 +1,265 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Обложка */
+.coverSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.coverPreview {
+    width: 280px;
+    height: 280px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+}
+
+.coverPreview:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.coverImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.coverIcon {
+    color: var(--color-text-primary);
+}
+
+.removeCoverBtn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.removeCoverBtn:hover {
+    background: rgba(255, 0, 0, 0.7);
+}
+
+.hiddenInput {
+    display: none;
+}
+
+.uploadBtn {
+    padding: 10px 24px;
+    background-color: #2a2a2a;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-family: "Lato", sans-serif;
+    line-height: 1.71429;
+    color: var(--color-text-primary);
+}
+
+.uploadBtn:hover {
+    background-color: #3a3a3a;
+}
+
+/* Поля */
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.label {
+    color: rgba(255, 255, 255, 0.6);
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.71429;
+    color: #808080;
+}
+
+.input,
+.textarea {
+    width: 100%;
+    padding: 8px;
+    background-color: #2a2a2a;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+    font-family: "Lato", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--color-text-primary);
+}
+
+.input:focus,
+.textarea:focus {
+    outline: none;
+    border-color: #ff38b6;
+}
+
+.inputError {
+    border-color: #ff4444;
+}
+
+.textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.errorText {
+    font-size: 12px;
+    color: #ff4444;
+}
+
+/* Теги */
+.tagsWrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #2a2a2a;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 8px 12px;
+    transition: border-color 0.2s;
+}
+
+.tagsWrapper:focus-within {
+    border-color: #ff38b6;
+}
+
+.tagsList {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    background-color: #3a3a3a;
+    border-radius: 12px;
+    font-size: 13px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.tagRemove {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s;
+}
+
+.tagRemove:hover {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.tagInput {
+    flex: 1;
+    min-width: 60px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    padding: 4px 0;
+}
+
+.tagInput::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.dropdownIcon {
+    color: rgba(255, 255, 255, 0.5);
+    flex-shrink: 0;
+}
+
+/* Кнопки действий */
+.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.cancelBtn {
+    padding: 10px 24px;
+    background-color: #2a2a2a;
+    border: none;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-family: inherit;
+}
+
+.cancelBtn:hover:not(:disabled) {
+    background-color: #3a3a3a;
+}
+
+.cancelBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.saveBtn {
+    padding: 10px 24px;
+    background-color: #ff38b6;
+    border: none;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+.saveBtn:hover:not(:disabled) {
+    background-color: #ff5cc7;
+    transform: translateY(-1px);
+}
+
+.saveBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}

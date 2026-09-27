@@ -1,0 +1,141 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Аватар */
+.avatarSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatarPreview {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    transition: border-color 0.2s;
+}
+
+.avatarPreview:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.avatarImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.avatarIcon {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.removeAvatarBtn {
+    position: absolute;
+    top: 50px;
+    right: 60px;
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.removeAvatarBtn:hover {
+    background: rgba(255, 0, 0, 0.7);
+}
+
+.hiddenInput {
+    display: none;
+}
+
+.uploadBtn {
+    background-color: #2a2a2a;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-family: "Lato", sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.71429;
+    color: var(--color-text-primary);
+    border-radius: 45px;
+    padding: 8px 24px;
+}
+
+.uploadBtn:hover {
+    background-color: #3a3a3a;
+}
+
+/* Поля */
+.field {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.71429;
+    color: var(--color-text-secondary);
+}
+
+.input {
+    width: 100%;
+    padding: 8px;
+    background: #2f2f2f;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+    font-family: "Lato", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--color-text-primary);
+
+}
+
+.input::placeholder {
+    color: var(--color-text-primary);
+}
+
+.input:focus {
+    outline: none;
+    border-color: #ff38b6;
+}
+
+.inputError {
+    border-color: #ff4444;
+}
+
+.errorText {
+    font-size: 12px;
+    color: #ff4444;
+}
+
+/* Кнопки действий */
+.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 42px;
+}

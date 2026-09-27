@@ -1,0 +1,52 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    /* flex: 0 0 auto означает:
+       0 - не растягиваться,
+       0 - не сжиматься,
+       auto - базовый размер */
+    flex: 0 0 auto;
+    width: 128px; /* Фиксированная ширина */
+    padding: 8px;
+    background-color: var(--color-bg-primary) ;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    transform: scale(1.05);
+}
+
+/* Информация о треке */
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1; /* Чтобы реакции прижимались к низу */
+    min-height: 0; /* Важно для text-overflow */
+    font-family: "Lato", sans-serif;
+}
+
+.title {
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.71429;
+    color: #fff;
+}
+
+.artist {
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 500;
+    font-size: 13px;
+    color: #b3b3b3;
+}

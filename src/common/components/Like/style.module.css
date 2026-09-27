@@ -1,0 +1,27 @@
+.actionBtn {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-secondary);
+    transition: all 0.2s ease;
+}
+
+.actionBtn:hover{
+    color: var(--color-text-primary);
+}
+
+/* Liked — розовая (#FF38B6) */
+.actionBtn.active {
+    color: #FF38B6;
+}
+
+/* Hover на лайкнутой — чуть светлее */
+.actionBtn.active:hover {
+    color: #ff5cc7;
+}

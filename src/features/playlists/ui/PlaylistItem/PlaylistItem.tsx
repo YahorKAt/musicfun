@@ -1,9 +1,12 @@
 import {
     useDeletePlaylistMutation,
+    useDislikePlaylistMutation,
+    useLikePlaylistMutation, useRemoveReactionPlaylistMutation,
 } from "@/features/playlists/api/playlistsApi";
 import type {PlaylistData} from "@/features/playlists/api/playlistsApi.types";
-import {PlaylistCover} from "@/features/playlists/ui/PlaylistItem/PlaylistCover/PlaylistCover";
-import {PlaylistDescription} from "@/features/playlists/ui/PlaylistItem/PlaylistDescription/PlaylistDescription";
+import {PlaylistDescription, PlaylistCover} from "@/features/playlists/ui/PlaylistItem/index";
+import {ReactionButton} from "@/common/components";
+import s from './PlaylistItem.module.css'
 
 type Props = {
     playlist: PlaylistData,
@@ -16,13 +19,39 @@ export const PlaylistItem = ({playlist, editPlaylist}: Props) => {
         deletePlaylist(playlistId)
     }
 
+    const [likePlaylist] = useLikePlaylistMutation()
+    const [dislikePlaylist] = useDislikePlaylistMutation()
+    const [removeReaction] = useRemoveReactionPlaylistMutation()
+
+    const handleLike = async () => {
+        if (playlist.attributes.currentUserReaction === 1) {
+            // Логика удаления лайка для трека
+            await removeReaction({playlistId: playlist.id})
+        } else {
+            await likePlaylist({playlistId: playlist.id}).unwrap()
+        }
+    }
+
+    const handleDislike = async () => {
+        if (playlist.attributes.currentUserReaction === -1) {
+            // Логика удаления дизлайка
+            await removeReaction({playlistId: playlist.id})
+        } else {
+            await dislikePlaylist({playlistId: playlist.id}).unwrap()
+        }
+    }
 
     return (
-        <div>
+        <div className={s.item}>
             <PlaylistCover playlistId={playlist.id} images={playlist.attributes.images}/>
             <PlaylistDescription attributes={playlist.attributes}/>
-            <button onClick={() => deletePlaylistHandler(playlist.id)}>delete</button>
-            <button onClick={() => editPlaylist(playlist)}>update</button>
+            <ReactionButton currentUserReaction={playlist.attributes.currentUserReaction}
+                            onLike={handleLike}
+                            onDislike={handleDislike}
+            />
+            <span className={s.duration}>{playlist.attributes.duration}</span>
+            {/*<button onClick={() => deletePlaylistHandler(playlist.id)}>delete</button>*/}
+            {/*<button onClick={() => editPlaylist(playlist)}>update</button>*/}
         </div>
     );
 };
