@@ -2,7 +2,7 @@ name: Deploy Vite React App to GitHub Pages
 
 on:
   push:
-    branches: ['main'] # Если главная ветка называется master, замените на 'master'
+    branches: ['main']
   workflow_dispatch:
 
 permissions:
@@ -24,14 +24,19 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: 'npm'
+          node-version: 22
+          cache: 'pnpm'  # 👈 изменили с npm на pnpm
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4  # 👈 добавили установку pnpm
+        with:
+          version: 9  # или ваша версия pnpm
 
       - name: Install dependencies
-        run: npm ci # Если нет package-lock.json, замените на npm install
+        run: pnpm install --frozen-lockfile  # 👈 используем pnpm
 
       - name: Build
-        run: npm run build
+        run: pnpm build  # 👈 или pnpm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -39,7 +44,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist' # Vite по умолчанию собирает в папку dist
+          path: './dist'
 
   deploy:
     environment:
